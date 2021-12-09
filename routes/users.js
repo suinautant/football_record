@@ -1,27 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const config = require('../config/dbconfig');
-// ../config/dbconfig
-// host: 'localhost',
-// user: 'username',
-// password: 'password',
-// database: 'fbrecord',
-const mysql = require('mysql');
-const connection = mysql.createConnection({
-    host: config.host,
-    user: config.user,
-    password: config.password,
-    database: config.database,
-});
+const sql = require('../common/dbconn');
+const query_users = require('../common/query/users');
 
-connection.connect();
-
-connection.query('SELECT * from users', function (error, results, fields) {
-    if (error) throw error;
-    console.log('The solution is: ', results[0].username);
-});
-
-connection.end();
+query_users.getUsernameWhereAdmin();
 
 // 가입
 router.get('/join', (req, res, next) => {
