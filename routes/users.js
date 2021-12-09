@@ -1,9 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const sql = require('../common/dbconn');
-const query_users = require('../common/query/users');
+const db = require('../common/dbconn');
 
-query_users.getUsernameWhereAdmin();
+db.connect();
+
+const sql = 'SELECT * FROM users';
+db.query(sql, (error, results, fields) => {
+    if (error) throw error;
+    console.log('The solution is: ', results[0].username);
+});
+
+db.end();
 
 // 가입
 router.get('/join', (req, res, next) => {
