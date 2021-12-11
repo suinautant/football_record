@@ -52,7 +52,11 @@
                 </div>
 
                 <button class="w-100 btn btn-lg btn-primary" type="submit">join</button>
-                <p class="mt-5 mb-3 text-muted">admin 계정만 가입 가능합니다.</p>
+                <% if (rows === 'ADMIN_ID_NOT_FOUND') { %>
+                <p class="mb-3 text-muted">admin 계정만 가입 가능합니다.</p>
+                <% }else { %>
+                <p class="mb-3 text-muted">이미 admin 계정이 존재합니다.</p>
+                <% } %>
             </form>
         </main>
     </body>

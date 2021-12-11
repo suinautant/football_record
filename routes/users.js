@@ -1,20 +1,17 @@
 const express = require('express');
+const ejsLint = require('ejs-lint');
 const router = express.Router();
 const db = require('../common/dbconn');
 
-db.connect();
-
-const sql = 'SELECT * FROM users';
-db.query(sql, (error, results, fields) => {
-    if (error) throw error;
-    console.log('The solution is: ', results[0].username);
-});
-
-db.end();
-
 // 가입
 router.get('/join', (req, res, next) => {
-    res.render('user/join', { title: 'join' });
+    const ADMIN_ID = 'admin';
+    const sql = 'SELECT * FROM users WHERE username = ?';
+    const params = [ADMIN_ID];
+    db.query(sql, params, (err, rows, fields) => {
+        if (err) throw err;
+        res.render('user/join', { rows: rows.length ? rows : 'ADMIN_ID_NOT_FOUND' });
+    });
 });
 
 router.post('/join', (req, res, next) => {
@@ -28,7 +25,7 @@ router.post('/join', (req, res, next) => {
         res.end();
     }
 
-    res.render('user/join', { title: 'join' });
+    res.send('<script>alert("test");</script>');
 });
 
 // 로그인
