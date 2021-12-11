@@ -48,6 +48,10 @@ router.post('/login', (req, res, next) => {
     console.log('username : ' + username);
     console.log('password : ' + password);
 
+    if (!isAdmin(username)) {
+        return res.send(' <script> alert("admin의 로그인만 가능합니다."); location.href="/users/join"; </script> ');
+    }
+
     const sql = 'SELECT password FROM users WHERE username = ? ';
     const params = [username, password];
     db.query(sql, params, (err, rows, fields) => {
