@@ -92,8 +92,9 @@ router.post('/login', (req, res, next) => {
         if (err) return res.send(err);
 
         const password = await makePasswordHashed(reqPassword, rows[0].salt);
-        if (rows[0].password === password) return res.send(' <script> alert("로그인 성공"); location.href="/"; </script> ');
-        else return res.send(' <script> alert("비밀번호가 다릅니다."); location.href="/users/login"; </script> ');
+        if (rows[0].password === password) {
+            return res.send(' <script> alert("로그인 성공"); location.href="/"; </script> ');
+        } else return res.send(' <script> alert("비밀번호가 다릅니다."); location.href="/users/login"; </script> ');
     });
 });
 
