@@ -2,6 +2,7 @@ require('dotenv').config(); // .env variable
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const { auth } = require('../middleware/authMiddleware');
 const ejsLint = require('ejs-lint'); // ejs 문법 점검
 const db = require('../common/dbconn'); // DB 접속 정보
 const { ExpectationFailed } = require('http-errors');
@@ -106,16 +107,18 @@ router.post('/login', (req, res, next) => {
                     expiresIn: '60m',
                 }
             );
-            //response
-            return res.status(200).json({
-                code: 200,
-                message: '토큰이 발급되었습니다.',
-                token: token,
+
+            res.cookie('user', token, {
+                httpOnly: true,
             });
 
-            // return res.send(' <script> alert("로그인 성공"); location.href="/"; </script> ');
+            return res.send(' <script> alert("로그인 성공"); location.href="/"; </script> ');
         } else return res.send(' <script> alert("비밀번호가 다릅니다."); location.href="/users/login"; </script> ');
     });
+});
+
+router.get('/token', auth, (req, res, next) => {
+    res.send(req.decoded);
 });
 
 module.exports = router;

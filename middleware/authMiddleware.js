@@ -6,7 +6,9 @@ exports.auth = (req, res, next) => {
     // 인증 완료
     try {
         // 요청 헤더에 저장된 토큰(req.headers.authorization)과 비밀키를 사용하여 토큰을 req.decoded에 반환
-        req.decoded = jwt.verify(req.headers.authorization, JWT_KEY);
+        // req.decoded = jwt.verify(req.headers.authorization, JWT_KEY);
+        // 쿠키에 user 이름으로 JWT 저장
+        req.decoded = jwt.verify(req.cookies.user, JWT_KEY);
         return next();
     } catch (error) {
         // 인증 실패
