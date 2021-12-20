@@ -117,6 +117,11 @@ router.post('/login', (req, res, next) => {
     });
 });
 
+router.get('/logout', (req, res, next) => {
+    res.clearCookie('user');
+    res.redirect('/');
+});
+
 router.get('/token', auth, (req, res, next) => {
     res.send(req.decoded);
 });
