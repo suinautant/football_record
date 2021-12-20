@@ -1,10 +1,10 @@
-const config = require('../config/dbconfig');
+require('dotenv').config();
 const mysql = require('mysql');
 const db = mysql.createConnection({
-    host: config.host,
-    user: config.user,
-    password: config.password,
-    database: config.database,
+    host: process.env.DB_Host,
+    user: process.env.DB_User,
+    password: process.env.DB_Password,
+    database: process.env.DB_Database,
 });
 
 module.exports = db;

@@ -1,15 +1,11 @@
 const express = require('express');
-// ejs 문법 점검
-const ejsLint = require('ejs-lint');
 const router = express.Router();
-// DB 접속 정보
-const db = require('../common/dbconn');
+const ejsLint = require('ejs-lint'); // ejs 문법 점검
+const db = require('../common/dbconn'); // DB 접속 정보
 const { ExpectationFailed } = require('http-errors');
-// 비밀번호 암호화
-const crypto = require('crypto');
+const crypto = require('crypto'); // 비밀번호 암호화
 
-// 관리자 ID
-const ADMIN_ID = 'admin';
+const ADMIN_ID = 'admin'; // 관리자 ID
 
 // 관리자 ID 확인
 const isAdmin = (username) => {
