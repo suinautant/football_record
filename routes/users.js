@@ -1,11 +1,14 @@
+require('dotenv').config(); // .env variable
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 const ejsLint = require('ejs-lint'); // ejs 문법 점검
 const db = require('../common/dbconn'); // DB 접속 정보
 const { ExpectationFailed } = require('http-errors');
 const crypto = require('crypto'); // 비밀번호 암호화
 
 const ADMIN_ID = 'admin'; // 관리자 ID
+const JWT_KEY = process.env.JWT_KEY; // jasonwebtoken secret key
 
 // 관리자 ID 확인
 const isAdmin = (username) => {
@@ -89,7 +92,28 @@ router.post('/login', (req, res, next) => {
 
         const password = await makePasswordHashed(reqPassword, rows[0].salt);
         if (rows[0].password === password) {
-            return res.send(' <script> alert("로그인 성공"); location.href="/"; </script> ');
+            // JWT 생성
+            //jwt.sign(payload, secretOrPrivateKey, [options, callback])
+            token = jwt.sign(
+                {
+                    type: 'JWT',
+                    id: 'admin',
+                    // exp: 30초
+                    // exp: Math.floor(Date.now() / 1000) - 30,
+                },
+                JWT_KEY,
+                {
+                    expiresIn: '60m',
+                }
+            );
+            //response
+            return res.status(200).json({
+                code: 200,
+                message: '토큰이 발급되었습니다.',
+                token: token,
+            });
+
+            // return res.send(' <script> alert("로그인 성공"); location.href="/"; </script> ');
         } else return res.send(' <script> alert("비밀번호가 다릅니다."); location.href="/users/login"; </script> ');
     });
 });
