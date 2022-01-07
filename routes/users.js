@@ -94,13 +94,10 @@ router.post('/login', (req, res, next) => {
         const password = await makePasswordHashed(reqPassword, rows[0].salt);
         if (rows[0].password === password) {
             // JWT 생성
-            //jwt.sign(payload, secretOrPrivateKey, [options, callback])
             token = jwt.sign(
                 {
                     type: 'JWT',
                     id: 'admin',
-                    // exp: 30초
-                    // exp: Math.floor(Date.now() / 1000) - 30,
                 },
                 JWT_KEY,
                 {
