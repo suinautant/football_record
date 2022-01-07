@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <%- include('common/__head'); -%>
-    </head>
-    <body>
-        <%- include('common/__menu'); -%>
-        <div class="container">
-            <div>
-                <div class="bg-light rounded">
-                    <!-- <div class="col-sm-8 mx-auto"> -->
-                    <div class="p-5">
-                        <h1>Navbar examples</h1>
-                        <p>
-                            This example is a quick exercise to illustrate how the navbar and its contents work. Some navbars extend the width of the viewport,
-                            others are confined within a <code>.container</code>. For positioning of navbars, checkout the
-                            <a href="/docs/5.1/examples/navbar-static/">top</a> and <a href="/docs/5.1/examples/navbar-fixed/">fixed top</a> examples.
-                        </p>
-                        <p>At the smallest breakpoint, the collapse plugin is used to hide the links and show a menu button to toggle the collapsed content.</p>
-                        <p>
-                            <a class="btn btn-primary" href="/docs/5.1/components/navbar/" role="button">View navbar docs &raquo;</a>
-                        </p>
-                    </div>
-                </div>
+  <head>
+    <%- include('common/__head'); -%>
+  </head>
+  <body>
+    <%- include('common/__menu'); -%>
+    <div class="container">
+      <div>
+        <div class="bg-light rounded">
+          <!-- <div class="col-sm-8 mx-auto"> -->
+          <div class="p-3 py-5">
+            <h1>역대 전적</h1>
+            <!-- 전체 테두리 -->
+            <div class="container">
+              <div class="row">
+                <div class="col text-center">번호</div>
+                <div class="col col-3 text-center">상대팀</div>
+                <div class="col col-3 text-center">날짜</div>
+                <div class="col col-3 text-center">장소</div>
+                <div class="col text-center">득점</div>
+                <div class="col text-center">실점</div>
+              </div>
+              <div class="row">
+                <div class="col text-center">1</div>
+                <div class="col col-3 text-center">경주한수원</div>
+                <div class="col col-3 text-center">2020-02-03 19:00</div>
+                <div class="col col-3 text-center">김해운동장</div>
+                <div class="col text-center">3</div>
+                <div class="col text-center">2</div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <script
-            src="https://getbootstrap.com/docs/5.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"
-        ></script>
-        <%- include('common/__body_footer'); -%>
-    </body>
+    <script
+      src="https://getbootstrap.com/docs/5.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <%- include('common/__body_footer'); -%>
+  </body>
 </html>
