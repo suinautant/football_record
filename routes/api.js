@@ -20,6 +20,15 @@ const rawDatabase = [
     goalsAgainst: 1,
     home: true,
   },
+  {
+    otherTeam: '3경주한수원',
+    date: '2020-2-3 19:00',
+    location: '3김해운동장',
+    points: 3,
+    goalsFor: 2,
+    goalsAgainst: 1,
+    home: true,
+  },
 ];
 
 router.get('/match', (req, res, next) => {
