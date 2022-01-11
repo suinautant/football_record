@@ -11,10 +11,8 @@ const rawDatabase = {
   home: true,
 };
 
-router.get('/', (req, res, next) => {
-  console.log('/match/');
-  console.log(rawDatabase);
-  res.render('match', { title: 'match', data: rawDatabase });
+router.get('/match', (req, res, next) => {
+  return res.json(rawDatabase);
 });
 
 module.exports = router;
