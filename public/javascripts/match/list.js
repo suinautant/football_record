@@ -25,28 +25,25 @@ function alertContents() {
 
 function listMatch() {
   const lists = JSON.parse(httpRequest.responseText);
-  let result = `
-        <div class="row">
-          <div class="col text-center">번호</div>
-          <div class="col col-3 text-center">상대팀</div>
-          <div class="col col-3 text-center">날짜</div>
-          <div class="col col-3 text-center">장소</div>
-          <div class="col text-center">득점</div>
-          <div class="col text-center">실점</div>
-        </div>
-  `;
+  let result = '';
   for (let i = 0; i < lists.length; i++) {
     const list = lists[i];
     result += `
-    <div class="row">
-      <div class="col text-center">${i + 1}</div>
-      <div class="col col-3 text-center">${list.other_team}</div>
-      <div class="col col-3 text-center">${list.date}</div>
-      <div class="col col-3 text-center">${list.location}</div>
-      <div class="col text-center">${list.goals_for}</div>
-      <div class="col text-center">${list.goals_against}</div>
-    </div>
-    `;
+      <tr>
+        <td class="text-center">${i + 1}</td>
+        <td class="text-center">${list.competition}</td>
+        <td class="text-center">${list.round}</td>
+        <td class="text-center">
+          <a href="/match/${list.idx}" style="color: #000; text-decoration: none"> 
+            ${list.other_team} 
+          </a> 
+        </td>
+        <td class="text-center"> ${list.date} </td>
+        <td class="text-center">${list.location}</td>
+        <td class="text-center">${list.goals_for}</td>
+        <td class="text-center">${list.goals_against}</td>
+      </tr>
+                `;
   }
   return result;
 }
