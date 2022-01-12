@@ -40,11 +40,11 @@ function listMatch() {
     result += `
     <div class="row">
       <div class="col text-center">${i + 1}</div>
-      <div class="col col-3 text-center">${list.otherTeam}</div>
+      <div class="col col-3 text-center">${list.other_team}</div>
       <div class="col col-3 text-center">${list.date}</div>
       <div class="col col-3 text-center">${list.location}</div>
-      <div class="col text-center">${list.goalsFor}</div>
-      <div class="col text-center">${list.goalsAgainst}</div>
+      <div class="col text-center">${list.goals_for}</div>
+      <div class="col text-center">${list.goals_against}</div>
     </div>
     `;
   }

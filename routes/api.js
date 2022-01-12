@@ -1,38 +1,14 @@
 const express = require('express');
 const router = express.Router();
-
-const rawDatabase = [
-  {
-    otherTeam: '경주한수원',
-    date: '2020-2-3 19:00',
-    location: '김해운동장',
-    points: 3,
-    goalsFor: 2,
-    goalsAgainst: 1,
-    home: true,
-  },
-  {
-    otherTeam: '2경주한수원',
-    date: '2020-2-3 19:00',
-    location: '2김해운동장',
-    points: 3,
-    goalsFor: 2,
-    goalsAgainst: 1,
-    home: true,
-  },
-  {
-    otherTeam: '3경주한수원',
-    date: '2020-2-3 19:00',
-    location: '3김해운동장',
-    points: 3,
-    goalsFor: 2,
-    goalsAgainst: 1,
-    home: true,
-  },
-];
+const db = require('../common/dbconn'); // DB 접속 정보
 
 router.get('/match', (req, res, next) => {
-  return res.json(rawDatabase);
+  const sql = 'SELECT * FROM matches_record';
+  const params = [];
+  db.query(sql, params, async (err, rows, fields) => {
+    if (err) throw err;
+    return res.json(rows);
+  });
 });
 
 module.exports = router;
