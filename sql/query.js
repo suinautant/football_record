@@ -1,5 +1,9 @@
+const field = {
+  match_date: 'date',
+};
+
 const match = {
-  list: 'SELECT * FROM matches_record',
+  list: 'SELECT * FROM matches_record ORDER BY ' + field.match_date + ' DESC',
 };
 
 const exam = {
