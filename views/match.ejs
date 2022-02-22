@@ -29,8 +29,26 @@
         </div>
       </div>
     </div>
-    <script src="/javascripts/middleware/xhr.js"></script>
-    <script src="/javascripts/match/list.js"></script>
     <%- include('common/__body_footer'); -%>
+    <script src="/javascripts/middleware/xhr.js" type="text/javascript"></script>
+    <script>
+      async function list() {
+        console.log('API SERVER : ' + API_SERVER_BASE);
+        const req = new XHR('http://localhost:3000/api');
+        // const getRes = await req.get('/match');
+        // const res = await req.get('/match');
+        req
+          .get('/match')
+          .then((data) => {
+            console.log('DATA');
+            console.log(data);
+          })
+          .catch((error) => {
+            console.log('ERROR');
+            console.log(error);
+          });
+      }
+      list();
+    </script>
   </body>
 </html>
