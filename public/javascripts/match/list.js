@@ -38,7 +38,7 @@ function listMatch() {
             ${list.other_team} 
           </a> 
         </td>
-        <td class="text-center"> ${list.date} </td>
+        <td class="text-center">${list.date}</td>
         <td class="text-center">${list.location}</td>
         <td class="text-center">${list.goals_for}</td>
         <td class="text-center">${list.goals_against}</td>

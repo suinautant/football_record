@@ -12,4 +12,14 @@ router.get('/match', (req, res, next) => {
   });
 });
 
+router.get('/match/:id', (req, res, next) => {
+  const matchId = req.params.id;
+  const sql = query.match.listId;
+  const params = [matchId];
+  db.query(sql, params, async (err, rows, fields) => {
+    if (err) throw err;
+    return res.json(rows);
+  });
+});
+
 module.exports = router;
