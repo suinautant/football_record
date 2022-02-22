@@ -1,9 +1,5 @@
-// var httpRequest;
-// makeRequest();
-// import { XHR } from '../middleware/xhr';
-
-const xhr = new XHR('http://localhots:3000/api/match');
-xhr.post();
+var httpRequest;
+makeRequest();
 
 function makeRequest() {
   httpRequest = new XMLHttpRequest();
