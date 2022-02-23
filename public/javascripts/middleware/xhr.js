@@ -54,18 +54,17 @@ class XHR {
                   status: xhr.status,
                   data: this.dataParser(xhr),
                 });
+              } else {
+                // 허용되지 않은 상태 코드 일 경우, 상태 코드와 응답 reject 처리
+                reject({ status: xhr.status, data: xhr.response });
               }
-            } else {
-              // 허용되지 않은 상태 코드 일 경우, 상태 코드와 응답 reject 처리
-              reject({ status: xhr.status, data: xhr.response });
             }
           } catch (error) {
             reject(error);
           }
         };
 
-        // xhr.open('GET', '/api/match');
-        xhr.send();
+        xhr.send(this.bodyParser(config.body));
       } catch (error) {
         reject(error);
       }
@@ -80,8 +79,19 @@ class XHR {
     });
   }
 
-  post() {
-    console.log(this.url);
-    console.log(this.send('post'));
+  post(url, body, headers) {
+    return this.send({
+      method: 'POST',
+      url,
+      body,
+      headers,
+    });
   }
 }
+
+// TEST
+// (async () => {
+//   const req = new XHR('http://localhost:3000/api');
+//   const res = await req.get('/match');
+//   console.log(res);
+// })();
