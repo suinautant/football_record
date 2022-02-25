@@ -34,7 +34,29 @@
       (async () => {
         const req = new XHR(API_SERVER_BASE);
         const res = await req.get('/match');
-        console.log(res.data[0].idx);
+
+        var render = '';
+        for (let i = 0; i < res.data.length; i++) {
+          let data = res.data[i];
+          render += `
+          <tr>
+            <td class="text-center">${i + 1}</td>
+            <td class="text-center">${data.competition}</td>
+            <td class="text-center">${data.round}</td>
+            <td class="text-center">
+              <a href="/match/${data.idx}" style="color: #000; text-decoration: none"> 
+                ${data.other_team} 
+              </a> 
+            </td>
+            <td class="text-center">${data.date} </td>
+            <td class="text-center">${data.location}</td>
+            <td class="text-center">${data.goals_for}</td>
+            <td class="text-center">${data.goals_against}</td>
+          </tr>
+          `;
+        }
+
+        document.querySelector('#jsTable').innerHTML = render;
       })();
     </script>
   </body>
