@@ -93,5 +93,6 @@ class XHR {
 // (async () => {
 //   const req = new XHR('http://localhost:3000/api');
 //   const res = await req.get('/match');
+//   const resPost = await req.post('/post', { test: 'test' });
 //   console.log(res);
 // })();
