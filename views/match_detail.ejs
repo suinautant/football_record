@@ -9,11 +9,10 @@
       <div>
         <div class="bg-light rounded">
           <div class="p-3 py-4">
-            <h1 class="pb-4">경기 기록 <%=id%></h1>
-            <table class="table table-striped table-hover">
+            <h1 class="pb-4">경기 기록</h1>
+            <table class="table table-hover">
               <thead>
                 <tr>
-                  <th scope="col" class="text-center">#</th>
                   <th scope="col" class="text-center">대회</th>
                   <th scope="col" class="text-center">라운드</th>
                   <th scope="col" class="text-center">상대팀</th>
@@ -29,7 +28,30 @@
         </div>
       </div>
     </div>
-    <script src="/javascripts/match/list.js"></script>
     <%- include('common/__body_footer'); -%>
+    <script>
+      let id = <%=id%>;
+      (async () => {
+        const req = new XHR(API_SERVER_BASE);
+        const res = await req.get('/match/'+id);
+        console.log(res);
+
+        var render = '';
+        let data = res.data[0];
+        render += `
+          <tr>
+            <td class="text-center">${data.competition}</td>
+            <td class="text-center">${data.round}</td>
+            <td class="text-center">${data.other_team}</td>
+            <td class="text-center">${data.date} </td>
+            <td class="text-center">${data.location}</td>
+            <td class="text-center">${data.goals_for}</td>
+            <td class="text-center">${data.goals_against}</td>
+          </tr>
+        `;
+
+        document.querySelector('#jsTable').innerHTML = render;
+      })();
+    </script>
   </body>
 </html>
